@@ -21,8 +21,8 @@ ot.RandomGenerator.SetSeed(0)
 
 ac_type = "A320"
 
-inputDesign = ot.Sample.ImportFromCSVFile("results/input/A320_2300km.csv")
-outputDesign = ot.Sample.ImportFromCSVFile("results/output/A320_2300km.csv")
+inputDesign = ot.Sample.ImportFromCSVFile("results/input/A320_580km.csv")
+outputDesign = ot.Sample.ImportFromCSVFile("results/output/A320_580km.csv")
 
 df_in = inputDesign.asDataFrame()
 df_out = outputDesign.asDataFrame()
@@ -55,15 +55,15 @@ base_1 = (
             .title("Load Factor")
         ),
         (alt.Y("ratio", scale=alt.Scale(domain=(0, 18))).title("")),
-        color=alt.datum("A320 (2000 km)"),
+        color=alt.datum("A320 (580 km)"),
     )
 )
 
 
 # %%
 
-inputDesign = ot.Sample.ImportFromCSVFile("results/input/A321_2300km.csv")
-outputDesign = ot.Sample.ImportFromCSVFile("results/output/A321_2300km.csv")
+inputDesign = ot.Sample.ImportFromCSVFile("results/input/A320_2300km.csv")
+outputDesign = ot.Sample.ImportFromCSVFile("results/output/A320_2300km.csv")
 
 df_in = inputDesign.asDataFrame()
 df_out = outputDesign.asDataFrame()
@@ -86,7 +86,9 @@ df_all["ratio"] = (
 base_2 = (
     alt.Chart(
         df_all.sample(5000, random_state=0),
-        title=alt.Title("Consumption in liters of kerosen per 100 RPK", anchor="start"),
+        title=alt.Title(
+            "Consumption in litres of kerosene per 100 RPK", anchor="start"
+        ),
     )
     .mark_circle(color="#FFAA00")
     .encode(
@@ -96,8 +98,8 @@ base_2 = (
             .axis(format="%")
             .title("Load Factor")
         ),
-        (alt.Y("ratio", scale=alt.Scale(domain=(0, 30))).title("")),
-        color=alt.datum("A320 (800 km)"),
+        (alt.Y("ratio", scale=alt.Scale(domain=(0, 40))).title("")),
+        color=alt.datum("A320 (2300 km)"),
     )
 )
 
@@ -112,6 +114,7 @@ chart = (
         strokeColor="gray",
         fillColor="#EEEEEE",
         padding=10,
+        labelFontSize=15,
         cornerRadius=10,
         orient="top-right",
     )

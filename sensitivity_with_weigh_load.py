@@ -20,10 +20,10 @@ ot.RandomGenerator.SetSeed(0)
 
 # %%
 
-inputDesign = ot.Sample.ImportFromCSVFile("results/input/A321_2300km.csv")
-outputDesign = ot.Sample.ImportFromCSVFile("results/output/A321_2300km.csv")
-ac_type = "A321"
-mission = 2300
+inputDesign = ot.Sample.ImportFromCSVFile("results/input/A320_580km.csv")
+outputDesign = ot.Sample.ImportFromCSVFile("results/output/A320_580km.csv")
+ac_type = "A320"
+mission = 580
 
 
 def test_openturns(X):
