@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "sensiflow"
+version = "0.1.0"
+description = ""
+authors = ["achevrot <antoine.chevrot@onera.fr>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.8"
+traffic = { path = "../traffic", develop = true }
+pybada = { path = "../pybada", develop = true }
+altair = "^5.0.1"
+
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
