@@ -114,7 +114,9 @@ distribution = ot.ComposedDistribution(
         get_dist(fpg.wrap.climb_const_mach()),  # X4
         get_dist(fpg.wrap.descent_const_vcas()),  # X5
         get_dist(fpg.wrap.descent_const_mach()),  # X6
-        (ot.Normal(0, 0.01) + 1) * mission_size,  # X7
+        (ot.TruncatedDistribution(
+            ot.Normal(0, 0.01), 0, ot.TruncatedDistribution.LOWER
+        ) + 1) * mission_size,  # X7
         get_dist(fpg.wrap.cruise_alt()) * 1000 * 3.28084,  # X8
         get_dist(fpg.wrap.cruise_mach()),  # X9
     ]
@@ -137,7 +139,7 @@ distribution.setDescription(
 
 # %%
 
-size = 2000
+size = 4000
 sie = ot.SobolIndicesExperiment(distribution, size)
 inputDesign = sie.generate()
 input_names = distribution.getDescription()

@@ -107,7 +107,9 @@ distribution = ot.ComposedDistribution(
         get_dist(fpg.wrap.climb_const_mach()),  # X4
         get_dist(fpg.wrap.descent_const_vcas()),  # X5
         get_dist(fpg.wrap.descent_const_mach()),  # X6
-        (ot.Normal(0, 0.1) + 1) * mission_size,  # X7
+        (ot.TruncatedDistribution(
+            ot.Normal(0, 0.01), 0, ot.TruncatedDistribution.LOWER
+        ) + 1) * mission_size,  # X7
         get_dist(fpg.wrap.cruise_mach()),  # X9
     ]
 )
@@ -141,6 +143,9 @@ inputDesign.exportToCSVFile(f"results/input/{ac_type}_{mission_size}km_fixed_alt
 outputDesign.exportToCSVFile(f"results/output/{ac_type}_{mission_size}km_fixed_alt.csv")
 
 # %%
+
+inputDesign = ot.Sample.ImportFromCSVFile("results/input/A320_2000km_fixed_alt.csv")
+outputDesign = ot.Sample.ImportFromCSVFile("results/output/A320_2000km_fixed_alt.csv")
 
 df_in = inputDesign.asDataFrame()
 df_out = outputDesign.asDataFrame()

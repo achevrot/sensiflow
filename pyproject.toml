@@ -6,12 +6,16 @@ authors = ["achevrot <antoine.chevrot@onera.fr>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.8"
+python = "^3.9"
 traffic = { path = "../traffic", develop = true }
 pybada = { path = "../pybada", develop = true }
 altair = "^5.0.1"
+openturns = "^1.22"
 
 
+
+[tool.poetry.group.dev.dependencies]
+ipykernel = "^6.29.3"
 
 [build-system]
 requires = ["poetry-core"]

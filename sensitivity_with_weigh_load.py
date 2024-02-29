@@ -20,10 +20,10 @@ ot.RandomGenerator.SetSeed(0)
 
 # %%
 
-inputDesign = ot.Sample.ImportFromCSVFile("results/input/A320_350km.csv")
-outputDesign = ot.Sample.ImportFromCSVFile("results/output/A320_350km.csv")
-ac_type = "A320"
-mission = 350
+inputDesign = ot.Sample.ImportFromCSVFile("results/input/B77W_5600km.csv")
+outputDesign = ot.Sample.ImportFromCSVFile("results/output/B77W_5600km.csv")
+ac_type = "B77W"
+mission = 5600
 
 
 def test_openturns(X):
@@ -142,7 +142,7 @@ distribution.setDescription(
 
 # %%
 
-size = 2000
+size = 4000
 sie = ot.SobolIndicesExperiment(distribution, size)
 inputDesign = sie.generate()
 input_names = distribution.getDescription()
@@ -219,7 +219,7 @@ means = (
         alt.X("points").scale(domain=(-0.15, 1)),
         alt.Y("cat", title=None),
         # alt.Row("names"),
-        alt.Color("cat", title=f"Sobol indices ({ac_type} - {mission}km)")
+        alt.Color("cat", title=f"2.d: {ac_type} - 5600km")
         # yOffset="cat:N",
     )
     .properties(width=600, height=30)

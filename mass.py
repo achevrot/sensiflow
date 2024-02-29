@@ -169,6 +169,7 @@ class Mass:
 
         tow = self.oew + payload + 0.15 * self.oew
         cumul = []
+        i = 0
         while True:
             # Fuel for trip
             f_trip: Annotated[Any, "kg"] = self.fe.compute_fuel(
@@ -190,9 +191,10 @@ class Mass:
             m_fuel: Annotated[Any, "kg"] = f_trip + f_cont + f_res + f_alt + 1
             new_tow: Annotated[Any, "kg"] = self.oew + payload + m_fuel
             cumul.append((f_trip, f_cont, f_res, f_alt, m_fuel, tow, new_tow))
-            if abs(tow - new_tow) < 10:
+            if abs(tow - new_tow) < 10 or i == 6:
                 break
             tow = new_tow
+            i += 1
         return tow
 
 
